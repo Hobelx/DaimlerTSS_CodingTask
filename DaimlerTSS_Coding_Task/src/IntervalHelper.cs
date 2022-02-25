@@ -9,7 +9,7 @@ namespace DaimlerTSS_CodingTask
     /// <summary>
     /// Provides cref="Interval{T}"/> helper functions.
     /// </summary>
-    class IntervalHelper
+    public class IntervalHelper
     {
         /// <summary>
         /// Merges overlapping <see cref="Interval{T}"/> from the given list and returns them as a new list.
@@ -88,6 +88,8 @@ namespace DaimlerTSS_CodingTask
         /// </returns>
         public static bool Overlaps<T>(Interval<T> interval1, Interval<T> interval2) where T: IComparable
         {
+            if (interval1 == null || interval2 == null)
+                return false;
             return (interval1.LowerBound.CompareTo(interval2.UpperBound) == 1 || interval1.UpperBound.CompareTo(interval2.LowerBound) == -1) ? false : true;
         }
     }

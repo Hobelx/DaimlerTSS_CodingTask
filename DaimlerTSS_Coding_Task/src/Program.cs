@@ -26,7 +26,7 @@ namespace DaimlerTSS_Coding_Task
             {
                 Console.WriteLine("LowerBound: " + interval.LowerBound);
                 Console.WriteLine("UpperBound: " + interval.UpperBound);
-                Console.WriteLine();
+                Console.WriteLine(IntervalHelper.Overlaps<int>(new Interval<int>(2, 7), new Interval<int>(4, 10)));
             }
 
         }

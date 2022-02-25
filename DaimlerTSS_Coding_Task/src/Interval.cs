@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace DaimlerTSS_CodingTask
 {
+
+
+
     /// <summary>
     /// Generic Interval which supports comparable types.\n
     /// It consists of one including lower and one including upper boundary
     /// </summary>
     /// <typeparam name="T">The generic type must be IComparable.</typeparam>
-    class Interval<T> where T : IComparable
+    public class Interval<T> where T : IComparable
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lowerBound"></param>
+        /// <param name="upperBound"></param>
         public Interval(T lowerBound, T upperBound) => (this.LowerBound, this.UpperBound) = (lowerBound, upperBound);
 
         /// <summary>

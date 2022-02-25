@@ -11,6 +11,13 @@
             </summary>
             <typeparam name="T">The generic type must be IComparable.</typeparam>
         </member>
+        <member name="M:DaimlerTSS_CodingTask.Interval`1.#ctor(`0,`0)">
+            <summary>
+            
+            </summary>
+            <param name="lowerBound"></param>
+            <param name="upperBound"></param>
+        </member>
         <member name="P:DaimlerTSS_CodingTask.Interval`1.LowerBound">
             <summary>
             Represents the including lower bound
