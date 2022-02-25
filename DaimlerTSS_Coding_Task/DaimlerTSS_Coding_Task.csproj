@@ -5,4 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\FHohb\source\repos\DaimlerTSS_Coding_Task\DaimlerTSS_Coding_Task\doc\DaimlerTSS_Coding_Task_Documentation.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

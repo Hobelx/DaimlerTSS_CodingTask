@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DaimlerTSS_Coding_Task</name>
+    </assembly>
+    <members>
+        <member name="T:DaimlerTSS_CodingTask.Interval`1">
+            <summary>
+            Generic Interval which supports comparable types.\n
+            It consists of one including lower and one including upper boundary
+            </summary>
+            <typeparam name="T">The generic type must be IComparable.</typeparam>
+        </member>
+        <member name="P:DaimlerTSS_CodingTask.Interval`1.LowerBound">
+            <summary>
+            Represents the including lower bound
+            </summary>
+        </member>
+        <member name="P:DaimlerTSS_CodingTask.Interval`1.UpperBound">
+            <summary>
+            Represents the including upper bound
+            </summary>
+        </member>
+        <member name="M:DaimlerTSS_CodingTask.Interval`1.Equals(System.Object)">
+            <summary>
+            Checks the Equality of this and the given Object(<see cref="T:DaimlerTSS_CodingTask.Interval`1"/>)
+            </summary>
+            <param name="obj">Must be another <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> . Otherwise it returns 'False'.</param>
+            <returns>Returns 'True' if <see cref="P:DaimlerTSS_CodingTask.Interval`1.LowerBound"/> and <see cref="P:DaimlerTSS_CodingTask.Interval`1.UpperBound"/> of <paramref name="obj"/> and this object are equal </returns>
+        </member>
+        <member name="M:DaimlerTSS_CodingTask.Interval`1.GetHashCode">
+            <summary>
+            Calculates the hash value of this <see cref="T:DaimlerTSS_CodingTask.Interval`1"/>. Is needed to call <see cref="M:DaimlerTSS_CodingTask.Interval`1.Equals(System.Object)"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DaimlerTSS_CodingTask.IntervalHelper">
+            <summary>
+            Provides cref="Interval{T}"/> helper functions.
+            </summary>
+        </member>
+        <member name="M:DaimlerTSS_CodingTask.IntervalHelper.Merge``1(System.Collections.Generic.List{DaimlerTSS_CodingTask.Interval{``0}}@)">
+            <summary>
+            Merges overlapping <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> from the given list and returns them as a new list.
+            Example: Input: [25,30] [2,19] [14, 23] [4,8]  Output: [2,23] [25,30]
+            </summary>
+            <typeparam name="T">The generic type must be <see cref="T:System.IComparable"/>.</typeparam>
+            <param name="intervalList">A list of <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> which merge the overlaping <see cref="T:DaimlerTSS_CodingTask.Interval`1"/>. </param>
+            <returns>Returns a new list of merged <see cref="T:DaimlerTSS_CodingTask.Interval`1"/>, based from the <paramref name="intervalList"/>.</returns>
+        </member>
+        <member name="M:DaimlerTSS_CodingTask.IntervalHelper.MergeIntervals``1(DaimlerTSS_CodingTask.Interval{``0},DaimlerTSS_CodingTask.Interval{``0})">
+            <summary>
+            Merges two <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> if they do overlap to each other
+            </summary>
+            <typeparam name="T">The generic type must be <see cref="T:System.IComparable"/>.</typeparam>
+            <param name="interval1">Will be merged with the second interval</param>
+            <param name="interval2">Will be merged with the first interval</param>
+            <returns>If <paramref name="interval1"/> and <paramref name="interval2"/> are overlapping it returns a new <see cref="T:DaimlerTSS_CodingTask.Interval`1"/>. If not the it returns a 'Null-Reference'  </returns>
+        </member>
+        <member name="M:DaimlerTSS_CodingTask.IntervalHelper.Overlaps``1(DaimlerTSS_CodingTask.Interval{``0},DaimlerTSS_CodingTask.Interval{``0})">
+            <summary>
+            Checks whether two <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> are overlapping. 
+            Overlapping is True if the two following conditions are False:
+            <list type="bullet">
+            <item><description>Lower Bound of <paramref name="interval1"/> is bigger than Upper Bound of <paramref name="interval2"/></description></item>
+            <item><description>Upper Bound of <paramref name="interval1"/> is smaller than Lower Bound of <paramref name="interval2"/></description></item>
+            </list>
+            </summary>
+            <typeparam name="T">The generic type must be <see cref="T:System.IComparable"/>.</typeparam>
+            <param name="interval1">Is checked for overlapping with <paramref name="interval2"/>.</param>
+            <param name="interval2">Is checked for overlapping with <paramref name="interval1"/>.</param>
+            <returns>
+            Returns 'True' if <paramref name="interval1"/> does overlaps with <paramref name="interval2"/>.\n
+            Returns 'False' if <paramref name="interval1"/> does not overlaps with <paramref name="interval2"/>
+            </returns>
+        </member>
+    </members>
+</doc>
