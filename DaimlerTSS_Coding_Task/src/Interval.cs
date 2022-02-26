@@ -63,5 +63,10 @@ namespace DaimlerTSS_CodingTask
             return String.Format("{0}|{1}", LowerBound, UpperBound).GetHashCode();
         }
 
+        public override string ToString()
+        {
+            return "[" + LowerBound + ", " + UpperBound + "]";
+        }
+
     }
 }
