@@ -8,26 +8,45 @@ namespace DaimlerTSS_Coding_Task
     {
         static void Main(string[] args)
         {
+            bool exit = false;
+            var listOfIntervals = new List<Interval<int>>();
 
-
-            List<Interval<int>> listOfIntervals = new List<Interval<int>> { new Interval<int>(25, 30), new Interval<int>(2, 19), new Interval<int>(14, 23), new Interval<int>(4, 8) };
-
-            foreach (Interval<int> interval in listOfIntervals)
+            while (!exit)
             {
-                //Console.WriteLine("LowerBound: " + interval.LowerBound);
-                //Console.WriteLine("UpperBound: " + interval.UpperBound);
-                //Console.WriteLine();
+                Console.WriteLine("Current list of Intervals: { " + string.Join(", ", listOfIntervals) + " }");
+                Console.WriteLine("1. Add new Interval to list");
+                Console.WriteLine("2. Delete all Intervals");
+                Console.WriteLine("3. Merge list of intervals");
+                Console.WriteLine("0. Exit");
+                Console.WriteLine();
+                Console.Write("Enter Number: ");
+                
+
+                var input = int.Parse(Console.ReadLine());
+
+                switch (input)
+                {
+                    case 0: exit = true; break;
+                    case 1:
+                        Console.Write("Lower Bound: ");
+                        var lowerBound = int.Parse(Console.ReadLine());
+                        Console.Write("Upper Bound: ");
+                        var upperBound = int.Parse(Console.ReadLine());
+                        listOfIntervals.Add(new Interval<int>(lowerBound, upperBound));
+                        break;
+                    case 2:
+                        listOfIntervals.Clear();
+                        break;
+                    case 3:
+                        listOfIntervals = IntervalHelper.Merge(listOfIntervals);
+                        break;
+                    default: break;    
+                }
+
+                Console.WriteLine();
             }
 
-            List<Interval<int>> listOfMergedIntervals = IntervalHelper.Merge(listOfIntervals);
-
-
-            foreach (Interval<int> interval in listOfMergedIntervals)
-            {
-                Console.WriteLine("LowerBound: " + interval.LowerBound);
-                Console.WriteLine("UpperBound: " + interval.UpperBound);
-                Console.WriteLine(IntervalHelper.Overlaps<int>(new Interval<int>(2, 7), new Interval<int>(4, 10)));
-            }
+            
 
         }
     }
