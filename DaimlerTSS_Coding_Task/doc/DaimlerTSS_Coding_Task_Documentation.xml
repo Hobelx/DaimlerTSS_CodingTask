@@ -13,10 +13,10 @@
         </member>
         <member name="M:DaimlerTSS_CodingTask.Interval`1.#ctor(`0,`0)">
             <summary>
-            
+            Constructor of Interval. <paramref name="upperBound"/> must be bigger as <paramref name="lowerBound"/>
             </summary>
-            <param name="lowerBound"></param>
-            <param name="upperBound"></param>
+            <param name="lowerBound">Sets the lower bound of Interval</param>
+            <param name="upperBound">Sets the upper bound of Interval</param>
         </member>
         <member name="P:DaimlerTSS_CodingTask.Interval`1.LowerBound">
             <summary>

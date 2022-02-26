@@ -17,20 +17,27 @@ namespace DaimlerTSS_CodingTask
     public class Interval<T> where T : IComparable
     {
         /// <summary>
-        /// 
+        /// Constructor of Interval. <paramref name="upperBound"/> must be bigger as <paramref name="lowerBound"/>
         /// </summary>
-        /// <param name="lowerBound"></param>
-        /// <param name="upperBound"></param>
-        public Interval(T lowerBound, T upperBound) => (this.LowerBound, this.UpperBound) = (lowerBound, upperBound);
+        /// <param name="lowerBound">Sets the lower bound of Interval</param>
+        /// <param name="upperBound">Sets the upper bound of Interval</param>
+        public Interval(T lowerBound, T upperBound)
+        {
+            if (lowerBound.CompareTo(upperBound) == 1)
+                throw new ArgumentException();
+
+            this.LowerBound = lowerBound;
+            this.UpperBound = upperBound;
+        } 
 
         /// <summary>
         /// Represents the including lower bound
         /// </summary>
-        public T LowerBound { get;  set; }
+        public T LowerBound { get;  }
         /// <summary>
         /// Represents the including upper bound
         /// </summary>
-        public T UpperBound { get;  set; }
+        public T UpperBound { get;  }
 
         /// <summary>
         /// Checks the Equality of this and the given Object(<see cref="Interval{T}"/>)
