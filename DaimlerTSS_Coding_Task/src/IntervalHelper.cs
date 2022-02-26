@@ -12,14 +12,18 @@ namespace DaimlerTSS_CodingTask
     public class IntervalHelper
     {
         /// <summary>
-        /// Merges overlapping <see cref="Interval{T}"/> from the given list and returns them as a new list.
-        /// Example: Input: [25,30] [2,19] [14, 23] [4,8]  Output: [2,23] [25,30]
+        /// Merges overlapping <see cref="Interval{T}"/> from the given list and returns them as a new list of merged <see cref="Interval{T}"/>.
+        /// \nExample: Input: [25,30] [2,19] [14, 23] [4,8]  Output: [2,23] [25,30]
+        /// \nThrows <see cref="ArgumentNullException"/> if <paramref name="intervalList"/> is 'Null'
         /// </summary>
         /// <typeparam name="T">The generic type must be <see cref="IComparable"/>.</typeparam>
         /// <param name="intervalList">A list of <see cref="Interval{T}"/> which merge the overlaping <see cref="Interval{T}"/>. </param>
         /// <returns>Returns a new list of merged <see cref="Interval{T}"/>, based from the <paramref name="intervalList"/>.</returns>
         public static List<Interval<T>> Merge<T>(in List<Interval<T>> intervalList) where T : IComparable
         {
+            if (intervalList == null)
+                throw new ArgumentNullException();
+
             List<Interval<T>> listOfMergedIntervals = new List<Interval<T>>();
 
             //Goes throw the list and faces all Intervals to each other
@@ -49,6 +53,7 @@ namespace DaimlerTSS_CodingTask
 
         /// <summary>
         /// Merges two <see cref="Interval{T}"/> if they do overlap to each other
+        /// \nThrows <see cref="ArgumentNullException"/> if <paramref name="interval1"/> or <paramref name="interval2"/> is null
         /// </summary>
         /// <typeparam name="T">The generic type must be <see cref="IComparable"/>.</typeparam>
         /// <param name="interval1">Will be merged with the second interval</param>
@@ -56,6 +61,9 @@ namespace DaimlerTSS_CodingTask
         /// <returns>If <paramref name="interval1"/> and <paramref name="interval2"/> are overlapping it returns a new <see cref="Interval{T}"/>. If not the it returns a 'Null-Reference'  </returns>
         public static Interval<T> MergeIntervals<T>(Interval<T> interval1, Interval<T> interval2) where T: IComparable
         {
+            if (interval1 == null || interval2 == null)
+                throw new ArgumentNullException();
+
             if (Overlaps(interval1, interval2))
             {
                 
@@ -73,11 +81,12 @@ namespace DaimlerTSS_CodingTask
 
         /// <summary>
         /// Checks whether two <see cref="Interval{T}"/> are overlapping. 
-        /// Overlapping is True if the two following conditions are False:
+        /// \nOverlapping is True if the two following conditions are False:
         /// <list type="bullet">
         /// <item><description>Lower Bound of <paramref name="interval1"/> is bigger than Upper Bound of <paramref name="interval2"/></description></item>
         /// <item><description>Upper Bound of <paramref name="interval1"/> is smaller than Lower Bound of <paramref name="interval2"/></description></item>
         /// </list>
+        /// \nThrows <see cref="ArgumentNullException"/> if <paramref name="interval1"/> or <paramref name="interval2"/> is null
         /// </summary>
         /// <typeparam name="T">The generic type must be <see cref="IComparable"/>.</typeparam>
         /// <param name="interval1">Is checked for overlapping with <paramref name="interval2"/>.</param>
@@ -89,7 +98,7 @@ namespace DaimlerTSS_CodingTask
         public static bool Overlaps<T>(Interval<T> interval1, Interval<T> interval2) where T: IComparable
         {
             if (interval1 == null || interval2 == null)
-                return false;
+                throw new ArgumentNullException();
             return (interval1.LowerBound.CompareTo(interval2.UpperBound) == 1 || interval1.UpperBound.CompareTo(interval2.LowerBound) == -1) ? false : true;
         }
     }

@@ -17,7 +17,7 @@ namespace DaimlerTSS_CodingTask
     public class Interval<T> where T : IComparable
     {
         /// <summary>
-        /// Constructor of Interval. <paramref name="upperBound"/> must be bigger as <paramref name="lowerBound"/>
+        /// Constructor of Interval. Throws <see cref="ArgumentException"/> if <paramref name="upperBound"/> is bigger as <paramref name="lowerBound"/>
         /// </summary>
         /// <param name="lowerBound">Sets the lower bound of Interval</param>
         /// <param name="upperBound">Sets the upper bound of Interval</param>

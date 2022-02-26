@@ -8,6 +8,8 @@ namespace DaimlerTSS_Coding_Task_Tests
 {
     public class IntervalHelperTests
     {
+        
+
         //#Set01 for testing
         List<Interval<int>> listOfIntervals01 = new List<Interval<int>> { new Interval<int>(25, 30), new Interval<int>(2, 19), new Interval<int>(14, 23), new Interval<int>(4, 8) };
         List<Interval<int>> expectedResult01 = new List<Interval<int>> { new Interval<int>(2, 23), new Interval<int>(25, 30) };
@@ -27,18 +29,17 @@ namespace DaimlerTSS_Coding_Task_Tests
 
             Set_expectedResult.Add(expectedResult01);
             Set_expectedResult.Add(expectedResult02);
+
+            
         }
 
         [Fact]
         public void Overlap_PassNullReference()
         {
-            Assert.False(IntervalHelper.Overlaps<int>(null, null));
-            Assert.False(IntervalHelper.Overlaps<int>(null, new Interval<int>(2, 5)));
-            Assert.False(IntervalHelper.Overlaps<int>(new Interval<int>(2, 5), null));
-
-            Assert.False(IntervalHelper.Overlaps<float>(null, null));
-            Assert.False(IntervalHelper.Overlaps<float>(null, new Interval<float>(2.0f, 5.0f)));
-            Assert.False(IntervalHelper.Overlaps<float>(new Interval<float>(2.0f, 5.0f), null));
+            Assert.Throws<ArgumentNullException>(() => IntervalHelper.Overlaps<int>(null, null));
+            Assert.Throws<ArgumentNullException>(() => IntervalHelper.Overlaps<int>(null, new Interval<int>(2, 10)));
+            Assert.Throws<ArgumentNullException>(() => IntervalHelper.Overlaps<int>(new Interval<int>(2, 10), null));
+            
         }
         [Fact]
         public void Overlap_IntervalInsideOtherInterval()
@@ -46,17 +47,13 @@ namespace DaimlerTSS_Coding_Task_Tests
             Assert.True(IntervalHelper.Overlaps<int>(new Interval<int>(1, 10), new Interval<int>(2,4)));
             Assert.True(IntervalHelper.Overlaps<int>(new Interval<int>(2, 4), new Interval<int>(1, 10)));
 
-            Assert.True(IntervalHelper.Overlaps<float>(new Interval<float>(1.2f, 10.4f), new Interval<float>(2.4f, 4.4f)));
-            Assert.True(IntervalHelper.Overlaps<float>(new Interval<float>(2.4f, 4.4f), new Interval<float>(1.4f, 10.4f)));
+            
         }
         [Fact]
         public void Overlap_IntervalOverlapsOtherInterval()
         {
             Assert.True(IntervalHelper.Overlaps<int>(new Interval<int>(1, 10), new Interval<int>(8, 12)));
             Assert.True(IntervalHelper.Overlaps<int>(new Interval<int>(8, 12), new Interval<int>(1, 10)));
-
-            Assert.True(IntervalHelper.Overlaps<float>(new Interval<float>(1.2f, 10.4f), new Interval<float>(2.4f, 4.4f)));
-            Assert.True(IntervalHelper.Overlaps<float>(new Interval<float>(2.4f, 4.4f), new Interval<float>(1.4f, 10.4f)));
         }
 
         [Fact]
@@ -76,10 +73,30 @@ namespace DaimlerTSS_Coding_Task_Tests
         public void MergeInterval_IntervalOutsideOtherInterval()
         {
             Assert.Equal(null, IntervalHelper.MergeIntervals<int>(new Interval<int>(5, 10), new Interval<int>(14, 20)));
-            Assert.Equal(null, IntervalHelper.MergeIntervals<float>(new Interval<float>(5, 10), new Interval<float>(14, 20)));
-
         }
+
+        [Fact]
+        public void MergeInterval_NullIntervals()
+        {
+            Assert.Throws<ArgumentNullException>(() => IntervalHelper.MergeIntervals<int>(null, null));
+            Assert.Throws<ArgumentNullException>(() => IntervalHelper.MergeIntervals<int>(null, new Interval<int>(2, 10)));
+            Assert.Throws<ArgumentNullException>(() => IntervalHelper.MergeIntervals<int>(new Interval<int>(2, 10), null));
+        }
+
+        [Fact]
+        public void Merge_ListNullReference()
+        {   
+            Assert.Throws<ArgumentNullException>(() => IntervalHelper.Merge<int>(null));
+        }
+
         
+
+        [Fact]
+        public void Merge_ListCountZero()
+        {
+            Assert.Equal(new List<Interval<int>>(), IntervalHelper.Merge<int>(new List<Interval<int>>()));
+        }
+
         [Fact]
         public void Merge_CheckListExample()
         {

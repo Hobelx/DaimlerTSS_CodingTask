@@ -13,7 +13,7 @@
         </member>
         <member name="M:DaimlerTSS_CodingTask.Interval`1.#ctor(`0,`0)">
             <summary>
-            Constructor of Interval. <paramref name="upperBound"/> must be bigger as <paramref name="lowerBound"/>
+            Constructor of Interval. Throws <see cref="T:System.ArgumentException"/> if <paramref name="upperBound"/> is bigger as <paramref name="lowerBound"/>
             </summary>
             <param name="lowerBound">Sets the lower bound of Interval</param>
             <param name="upperBound">Sets the upper bound of Interval</param>
@@ -48,8 +48,9 @@
         </member>
         <member name="M:DaimlerTSS_CodingTask.IntervalHelper.Merge``1(System.Collections.Generic.List{DaimlerTSS_CodingTask.Interval{``0}}@)">
             <summary>
-            Merges overlapping <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> from the given list and returns them as a new list.
-            Example: Input: [25,30] [2,19] [14, 23] [4,8]  Output: [2,23] [25,30]
+            Merges overlapping <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> from the given list and returns them as a new list of merged <see cref="T:DaimlerTSS_CodingTask.Interval`1"/>.
+            \nExample: Input: [25,30] [2,19] [14, 23] [4,8]  Output: [2,23] [25,30]
+            \nThrows <see cref="T:System.ArgumentNullException"/> if <paramref name="intervalList"/> is 'Null'
             </summary>
             <typeparam name="T">The generic type must be <see cref="T:System.IComparable"/>.</typeparam>
             <param name="intervalList">A list of <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> which merge the overlaping <see cref="T:DaimlerTSS_CodingTask.Interval`1"/>. </param>
@@ -58,6 +59,7 @@
         <member name="M:DaimlerTSS_CodingTask.IntervalHelper.MergeIntervals``1(DaimlerTSS_CodingTask.Interval{``0},DaimlerTSS_CodingTask.Interval{``0})">
             <summary>
             Merges two <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> if they do overlap to each other
+            \nThrows <see cref="T:System.ArgumentNullException"/> if <paramref name="interval1"/> or <paramref name="interval2"/> is null
             </summary>
             <typeparam name="T">The generic type must be <see cref="T:System.IComparable"/>.</typeparam>
             <param name="interval1">Will be merged with the second interval</param>
@@ -67,11 +69,12 @@
         <member name="M:DaimlerTSS_CodingTask.IntervalHelper.Overlaps``1(DaimlerTSS_CodingTask.Interval{``0},DaimlerTSS_CodingTask.Interval{``0})">
             <summary>
             Checks whether two <see cref="T:DaimlerTSS_CodingTask.Interval`1"/> are overlapping. 
-            Overlapping is True if the two following conditions are False:
+            \nOverlapping is True if the two following conditions are False:
             <list type="bullet">
             <item><description>Lower Bound of <paramref name="interval1"/> is bigger than Upper Bound of <paramref name="interval2"/></description></item>
             <item><description>Upper Bound of <paramref name="interval1"/> is smaller than Lower Bound of <paramref name="interval2"/></description></item>
             </list>
+            \nThrows <see cref="T:System.ArgumentNullException"/> if <paramref name="interval1"/> or <paramref name="interval2"/> is null
             </summary>
             <typeparam name="T">The generic type must be <see cref="T:System.IComparable"/>.</typeparam>
             <param name="interval1">Is checked for overlapping with <paramref name="interval2"/>.</param>
