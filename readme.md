@@ -9,7 +9,7 @@ Das Projekt unterteilt sich in 3 Teile:
 2. /DaimlerTSS_Coding_Task: 		Visual-Studio-Projekt und Source-Dateien.
 3. /DaimlerTSS_Coding_Task_Tests: 	Ausführbare Tests mit Visual Studio.
 
-## Enticklungsumgebung:
+## Entwicklungsumgebung:
 Das Projekt wurde in C# mithilfe von Visual-Studio und .net5 geschrieben.
 
 ## Beispiel:
