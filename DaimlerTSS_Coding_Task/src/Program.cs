@@ -22,7 +22,16 @@ namespace DaimlerTSS_Coding_Task
                 Console.Write("Enter Number: ");
                 
 
-                var input = int.Parse(Console.ReadLine());
+                int input;
+                
+                //Check input is number
+                if(!int.TryParse(Console.ReadLine(), out input))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid Input. Please try again!");
+                    Console.WriteLine();
+                    continue;
+                }
 
                 switch (input)
                 {
