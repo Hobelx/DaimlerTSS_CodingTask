@@ -1,4 +1,4 @@
-DaimlerTSS_Coding_Task v1.0.1
+DaimlerTSS_Coding_Task v1.0.2
 
 
 ## Projekt:
