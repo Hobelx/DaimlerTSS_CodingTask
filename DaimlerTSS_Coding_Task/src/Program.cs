@@ -27,9 +27,7 @@ namespace DaimlerTSS_Coding_Task
                 //Check input is number
                 if(!int.TryParse(Console.ReadLine(), out input))
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Invalid Input. Please try again!");
-                    Console.WriteLine();
+                    InvalidInput();
                     continue;
                 }
 
@@ -41,6 +39,14 @@ namespace DaimlerTSS_Coding_Task
                         var lowerBound = int.Parse(Console.ReadLine());
                         Console.Write("Upper Bound: ");
                         var upperBound = int.Parse(Console.ReadLine());
+
+                        if(lowerBound > upperBound)
+                        {
+                            InvalidInput();
+                            continue;
+                        }
+
+
                         listOfIntervals.Add(new Interval<int>(lowerBound, upperBound));
                         break;
                     case 2:
@@ -57,6 +63,13 @@ namespace DaimlerTSS_Coding_Task
 
             
 
+        }
+
+        private static void InvalidInput()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Invalid Input. Please try again!");
+            Console.WriteLine();
         }
     }
 }
